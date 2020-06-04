@@ -34,7 +34,7 @@ The application is based on the aws serverless application model (SAM) and is wr
 
    GET https://[host url]/Prod/v1/default?from=01/01/2020&to=05/01/2020  
 
- - The above call will return 1
+ - The above call will return 2
 
  - The api may be run locally and when started from the VS debug menu it will be listening on    http://localhost:5000/v1/default. The following call may be used for testing locally:
  
