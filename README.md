@@ -25,7 +25,7 @@ The application is based on the aws serverless application model (SAM) and is wr
   - aws cloudformation package --template-file ./template.yml --output-template-file sam-template.yml --s3-bucket weekdayscfs3bucket
 
   - To deploy the packaged source code to aws lambda using CF run:
-  - sam deploy --template-file ./sam-template.yml --stack-name weekdays-api --capabilities CAPABILITY_IAM
+  - aws cloudformation deploy --template-file ./sam-template.yml --stack-name weekdays-api --capabilities CAPABILITY_IAM
 
   
 # Testing instructions. 
@@ -36,7 +36,7 @@ The application is based on the aws serverless application model (SAM) and is wr
 
  - The above call will return 2
 
- - The api may be run locally and when started from the VS debug menu it will be listening on    http://localhost:5000/v1/default. The following calls may be used for testing locally:
+ - The api may be run locally and when started from the VS debug menu it will be listening on    http://localhost:5000/v1/default. The following call may be used for testing locally:
  
- https://localhost:5000/Prod/v1/default?from=01/01/2020&to=05/01/2020 
+   https://localhost:5000/Prod/v1/default?from=01/01/2020&to=05/01/2020 
  
