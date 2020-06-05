@@ -30,13 +30,12 @@ namespace Weekdays.Services
                 int matches = GetMatchingHolidays(start, end, holidays);
                 businessDaysCount -= matches;
             }
-
             return Convert.ToInt16(businessDaysCount);
         }
 
         private int GetMatchingHolidays(DateTime start, DateTime end, List<Holiday> holidays)
         {
-           var list = holidays.Where(p => p.Date >= start && p.Date <= end && p.Date.DayOfWeek
+           var list = holidays.Where(p => p.Date > start && p.Date < end && p.Date.DayOfWeek
                             != DayOfWeek.Saturday && p.Date.DayOfWeek != DayOfWeek.Sunday);
             return list.Any() ? list.Count() : 0;
         }
@@ -53,7 +52,6 @@ namespace Weekdays.Services
             return businessDaysCount;
         }
 
-
         private bool IsParsable(string from, string to, out DateTime start, out DateTime end)
         {
             end = default;
@@ -61,17 +59,14 @@ namespace Weekdays.Services
             string format = "dd/MM/yyyy";
             string format2 = "d/M/yyyy";
 
-
             if (DateTime.TryParseExact(from, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out start) && DateTime.TryParseExact(to, format, cult, DateTimeStyles.None, out end)) return true;
 
             return (DateTime.TryParseExact(from, format2, CultureInfo.InvariantCulture, DateTimeStyles.None, out start) && DateTime.TryParseExact(to, format2, cult, DateTimeStyles.None, out end));
         }
 
-
         private bool IsValid(DateTime start, DateTime end)
         {
             if (start == end) return false;
-
             if (end < start) return false;
 
             return true;

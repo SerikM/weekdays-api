@@ -29,7 +29,7 @@ namespace Weekdays
             services.Configure<AwsSettingsModel>(Configuration.GetSection("AWS"));
             AWSSDKHandler.RegisterXRayForAllServices();
             services.AddTransient<ICalculationService, CalculationService>();
-            services.AddScoped(typeof(IDBDataService<IData>), typeof(DBDataService<IData>));
+            services.AddTransient<IDBDataService<IData>, DBDataService<IData>>();
             services.AddAWSService<IAmazonDynamoDB>();
             services.AddControllers();
         }

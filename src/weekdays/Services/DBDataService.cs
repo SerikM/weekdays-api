@@ -8,13 +8,12 @@ using Weekdays.Models;
 using Microsoft.Extensions.Options;
 using Amazon.XRay.Recorder.Core;
 
-
 namespace Weekdays.Repositories
 {
     public class DBDataService<T> : IDBDataService<IData>
     {
         private readonly IOptions<AwsSettingsModel> _appSettings;
-        IDynamoDBContext DDBContext { get; set; }
+        private readonly IDynamoDBContext _ddbContext;
 
         public DBDataService(IAmazonDynamoDB dynamoDbClient, IOptions<AwsSettingsModel> appSettings)
         {
@@ -26,7 +25,7 @@ namespace Weekdays.Repositories
             }
 
             var conf = new DynamoDBContextConfig { Conversion = DynamoDBEntryConversion.V2 };
-            this.DDBContext = new DynamoDBContext(dynamoDbClient, conf);
+            _ddbContext = new DynamoDBContext(dynamoDbClient, conf);
         }
 
 
@@ -37,7 +36,7 @@ namespace Weekdays.Repositories
             List<T> page;
             try
             {
-                var search = this.DDBContext.ScanAsync<T>(null);
+                var search = _ddbContext.ScanAsync<T>(null);
                 page = await search.GetNextSetAsync();
             }
             catch (Exception)
