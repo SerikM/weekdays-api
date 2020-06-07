@@ -60,5 +60,5 @@ The application is based on the aws serverless application model (SAM) and is wr
    test case #7 to test good friday and easter monday. Expected output 15
    https://host_url/Prod/v1/Default?from=02/04/2019&to=29/04/2019
 
-   test case #8 to test long time span expected out 2335
+   test case #8 to test long time span expected out 2335</br>
    https://host_url/Prod/v1/Default?from=01/10/2010&to=31/12/2019
