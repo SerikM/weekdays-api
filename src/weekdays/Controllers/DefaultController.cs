@@ -9,7 +9,6 @@ namespace Weekdays.Controllers
     public class DefaultController : ControllerBase
     {
         private const string ErrorMessage = "failed to process request";
-
         private readonly ICalculationService _calculationService;
 
         public DefaultController(ICalculationService calculationService)
@@ -28,7 +27,7 @@ namespace Weekdays.Controllers
             };
 
             if (count < 0) return BadRequest(ErrorMessage);
-           
+
             return Ok(JsonConvert.SerializeObject(count));
         }
     }

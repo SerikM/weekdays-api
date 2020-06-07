@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: This is a lambda service that returns weekdays given to points in time as parameters
-
 Resources:
   GetWeekdaysFunction:
     Type: AWS::Serverless::Function
@@ -22,8 +21,6 @@ Resources:
           Properties:
             Path: "/{proxy+}"
             Method: ANY
-
-
   DynamoDBTable: 
     Type: AWS::DynamoDB::Table
     Properties: 
@@ -34,7 +31,6 @@ Resources:
         - 
           AttributeName: "Date"
           AttributeType: "S"
-
       KeySchema: 
         - 
           AttributeName: "Name"
@@ -42,9 +38,7 @@ Resources:
         - 
           AttributeName: "Date"
           KeyType: "RANGE"
-
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"
         WriteCapacityUnits: "5"
-
       TableName: "Holiday"

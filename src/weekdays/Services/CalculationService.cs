@@ -1,7 +1,5 @@
 ﻿using Weekdays.Models;
-using Weekdays.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -11,9 +9,11 @@ namespace Weekdays.Services
     public class CalculationService : ICalculationService
     {
         private readonly IDBDataService<IData> _dataService;
+        private readonly IHolidaysCalculationService _holCalcService;
 
-        public CalculationService(IDBDataService<IData> dataService)
+        public CalculationService(IDBDataService<IData> dataService, IHolidaysCalculationService holCalcService)
         {
+            _holCalcService = holCalcService;
             _dataService = dataService;
         }
 
@@ -23,21 +23,14 @@ namespace Weekdays.Services
             if (!IsValid(start, end)) return -1;
 
             double businessDaysCount = GetBusinessDayCount(start, end);
-            var   holidays = await _dataService.GetDatedItems<Holiday>(start, end);
-            
-            if (holidays != null && holidays.Any()) 
-            {
-                int matches = GetMatchingHolidays(start, end, holidays);
-                businessDaysCount -= matches;
-            }
-            return Convert.ToInt16(businessDaysCount);
-        }
+            var holidays = await _dataService.GetDatedItems<Holiday>(start, end);
 
-        private int GetMatchingHolidays(DateTime start, DateTime end, List<Holiday> holidays)
-        {
-           var list = holidays.Where(p => p.Date > start && p.Date < end && p.Date.DayOfWeek
-                            != DayOfWeek.Saturday && p.Date.DayOfWeek != DayOfWeek.Sunday);
-            return list.Any() ? list.Count() : 0;
+            if (holidays == null || !holidays.Any()) return Convert.ToInt16(businessDaysCount);
+
+            int matches = _holCalcService.GetNumberOfMatchingHolidays(start, end, holidays);
+
+            businessDaysCount -= matches;
+            return Convert.ToInt16(businessDaysCount);
         }
 
         private double GetBusinessDayCount(DateTime start, DateTime end)
@@ -51,7 +44,7 @@ namespace Weekdays.Services
 
             return businessDaysCount;
         }
-
+        
         private bool IsParsable(string from, string to, out DateTime start, out DateTime end)
         {
             end = default;
@@ -67,9 +60,7 @@ namespace Weekdays.Services
         private bool IsValid(DateTime start, DateTime end)
         {
             if (start == end) return false;
-            if (end < start) return false;
-
-            return true;
+            return end >= start;
         }
     }
 }

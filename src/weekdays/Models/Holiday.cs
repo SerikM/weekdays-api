@@ -9,6 +9,6 @@ namespace Weekdays.Models
         public string Name { get; set; }
         [DynamoDBProperty(typeof(DateTimeUtcConverter))]
         public DateTime Date { get; set; }
-        public HolidayType DayType { get; set; }
+        public HolidayType Type { get; set; }
     }
 }
