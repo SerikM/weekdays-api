@@ -37,28 +37,28 @@ The application is based on the aws serverless application model (SAM) and is wr
 
 
  
- -The following test cases can be run from postman to test the api deployed in the cloud. Replace [host url] with the root of your api:
+ -The following test cases can be run from postman to test the api deployed in the cloud. Replace [host_url] with the root of your api:
  
    test case #1 - perm date - Anzac Day - expected output 6
-   [a link](https://[host url]/Prod/v1/Default?from=19/04/2020&to=28/04/2020)
+   https://host_url/Prod/v1/Default?from=19/04/2020&to=28/04/2020
 
    test case #2 - New Years Eve - expected output 8
-   [a link](https://host_url/Prod/v1/Default?from=29/11/2019&to=10/01/2020) 
+   https://host_url/Prod/v1/Default?from=29/11/2019&to=10/01/2020
 
    test case #3 if we check for a period around new years eve - expected output 10
-  [a link](https://host_url/Prod/v1/Default?from=01/01/2020&to=16/01/2020)
+   https://host_url/Prod/v1/Default?from=01/01/2020&to=16/01/2020
 
    test case #4 type 3 queens birthday falls on second week of June 08/06/2020 expected output 27
-   [a link](https://host_url/Prod/v1/Default?from=17/05/2021&to=25/06/2021)
+   https://host_url/Prod/v1/Default?from=17/05/2021&to=25/06/2021
 
    test case #5 type 1 - 26/12/2019 Boxing day amd type 2 holiday new years eve n 01/01/2020 expected output 9
-   [a link](https://host_url/Prod/v1/Default?from=26/12/2019&to=10/01/2020)
+   https://host_url/Prod/v1/Default?from=26/12/2019&to=10/01/2020)
 
    test case #6 multiple years 02/02/2019 to 29/12/2021 expected output 737
-   [a link](https://host_url/Prod/v1/Default?from=02/02/2019&to=29/12/2021)
+   https://host_url/Prod/v1/Default?from=02/02/2019&to=29/12/2021
 
    test case #7 to test good friday and easter monday. Expected output 15
-   [a link](https://host_url/Prod/v1/Default?from=02/04/2019&to=29/04/2019)
+   https://host_url/Prod/v1/Default?from=02/04/2019&to=29/04/2019
 
    test case #8 to test long time span expected out 2335
-   [a link](https://host_url/Prod/v1/Default?from=01/10/2010&to=31/12/2019)
+   https://host_url/Prod/v1/Default?from=01/10/2010&to=31/12/2019
