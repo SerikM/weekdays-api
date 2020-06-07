@@ -39,8 +39,8 @@ The application is based on the aws serverless application model (SAM) and is wr
  
  -The following test cases can be run from postman to test the api deployed in the cloud. Replace [host_url] with the root of your api:
  
-   test case #1 - perm date - Anzac Day - expected output 6
-   https://host_url/Prod/v1/Default?from=19/04/2020&to=28/04/2020</br>
+   test case #1 - perm date - Anzac Day - expected output 6</br>
+   https://host_url/Prod/v1/Default?from=19/04/2020&to=28/04/2020
 
    test case #2 - New Years Eve - expected output 8
    https://host_url/Prod/v1/Default?from=29/11/2019&to=10/01/2020</br>
