@@ -25,9 +25,8 @@ namespace Weekdays.Services
             double businessDaysCount = GetBusinessDayCount(start, end);
             var holidays = await _dataService.GetDatedItems<Holiday>(start, end);
 
-            if (holidays == null || !holidays.Any()) return Convert.ToInt16(businessDaysCount);
-
-            int matches = _holCalcService.GetNumberOfMatchingHolidays(start, end, holidays);
+            if (holidays == null || !holidays.Any()) return -1;
+            var matches = _holCalcService.GetNumberOfMatchingHolidays(start, end, holidays);
 
             businessDaysCount -= matches;
             return Convert.ToInt16(businessDaysCount);
