@@ -1,9 +1,8 @@
-﻿using Weekdays.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 
-namespace Weekdays.Repositories
+namespace Weekdays.Services
 {
     public interface IDBDataService<T>
     {

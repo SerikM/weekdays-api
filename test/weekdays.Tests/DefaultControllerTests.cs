@@ -2,9 +2,7 @@
 using Moq;
 using Weekdays.Services;
 using Weekdays.Controllers;
-using Weekdays.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace Weekdays.Tests

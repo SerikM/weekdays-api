@@ -2,8 +2,9 @@
 {
     public enum HolidayType
     {
-        TypeOne = 1,
-        TypeTwo = 2,
-        TypeThree = 3
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4
     }
 }

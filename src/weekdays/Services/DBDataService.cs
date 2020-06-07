@@ -8,7 +8,7 @@ using Weekdays.Models;
 using Microsoft.Extensions.Options;
 using Amazon.XRay.Recorder.Core;
 
-namespace Weekdays.Repositories
+namespace Weekdays.Services
 {
     public class DBDataService<T> : IDBDataService<IData>
     {
@@ -23,7 +23,6 @@ namespace Weekdays.Repositories
             {
                 AWSConfigsDynamoDB.Context.TypeMappings[typeof(T)] = new Amazon.Util.TypeMapping(typeof(T), tblName);
             }
-
             var conf = new DynamoDBContextConfig { Conversion = DynamoDBEntryConversion.V2 };
             _ddbContext = new DynamoDBContext(dynamoDbClient, conf);
         }

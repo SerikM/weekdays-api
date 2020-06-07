@@ -1,5 +1,4 @@
-﻿using Weekdays.Repositories;
-using Weekdays.Services;
+﻿using Weekdays.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +29,7 @@ namespace Weekdays
             AWSSDKHandler.RegisterXRayForAllServices();
             services.AddTransient<ICalculationService, CalculationService>();
             services.AddTransient<IDBDataService<IData>, DBDataService<IData>>();
+            services.AddTransient<IHolidaysCalculationService, HolidaysCalculationService>();
             services.AddAWSService<IAmazonDynamoDB>();
             services.AddControllers();
         }
@@ -41,7 +41,6 @@ namespace Weekdays
                 app.UseDeveloperExceptionPage();
             }
             app.UseRouting();
-            
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
